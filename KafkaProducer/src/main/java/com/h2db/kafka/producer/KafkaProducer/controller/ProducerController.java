@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -43,6 +44,12 @@ public class ProducerController {
         topicProducer.send(message.toString());
         MessageModel tempMessage = service.addMessage(message);
         return tempMessage;
+    }
+
+
+    @GetMapping("/get-messages")
+    public List<MessageModel> getMessages(){
+        return service.getMessages();
     }
 
 
