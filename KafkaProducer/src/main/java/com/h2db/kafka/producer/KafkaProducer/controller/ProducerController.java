@@ -1,6 +1,7 @@
 package com.h2db.kafka.producer.KafkaProducer.controller;
 
 
+import com.h2db.kafka.producer.KafkaProducer.model.UserModel;
 import com.h2db.kafka.producer.KafkaProducer.producer.TopicProducer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,12 @@ public class ProducerController {
     @PostMapping("/send-with-body")
     public void sendWithBody(@RequestBody Map<String, Object> body){
         topicProducer.sendWithBody(body);
+    }
+
+    @PostMapping("/send-user")
+    public UserModel sendUser(@RequestBody UserModel user){
+        topicProducer.send(user.toString());
+        return user;
     }
 
 
